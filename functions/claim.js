@@ -14,7 +14,6 @@ export async function onRequestPost(context) {
 
   const key = `claim:${playerId}`;
   const record = await env.cookierunfangames.get(key, "json");
-
   if (record && record.claimed) {
     return new Response(JSON.stringify({ error: "Already claimed" }), { status: 403 });
   }
@@ -22,11 +21,7 @@ export async function onRequestPost(context) {
   const now = new Date().toISOString();
   await env.cookierunfangames.put(key, JSON.stringify({ time: now, claimed: true }));
 
-  return new Response(JSON.stringify({
-    status: "success",
-    reward: meta.reward,
-    amount: meta.amount
-  }), {
+  return new Response(JSON.stringify({ status: "success", reward: meta.reward, amount: meta.amount }), {
     headers: { "Content-Type": "application/json" }
   });
 }
