@@ -1,0 +1,6 @@
+name = "reward-backend"
+compatibility_date = "2025-07-14"
+
+[[kv_namespaces]]
+binding = "cookierunfangames"
+id = "d62a2ca90b7a458286bde8abb5f8fe7e"
