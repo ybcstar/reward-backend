@@ -2,12 +2,11 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
   const body = await request.json();
-  const { rewards, username, password } = body;
+  const { rewards, password } = body;
 
-  const ADMIN_USER = 'admin';
-  const ADMIN_PASS = 'POST';
+  const ADMIN_PASS = env.pswd;
 
-  if (username !== ADMIN_USER || password !== ADMIN_PASS) {
+  if (!ADMIN_PASS || password !== ADMIN_PASS) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
 
